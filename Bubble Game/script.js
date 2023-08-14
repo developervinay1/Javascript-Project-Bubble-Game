@@ -1,6 +1,7 @@
 // Event Bubbling Concept: On click the event will be raised on particular element.If the event listener not found on element then it will search on parent and if not found then it will research on parent's parent component and the loop will continue until the event not found. This concept is called event bubbling.
 var time = 60;
 var score = 0;
+var newHit = 0;
 
 const increaseScore = () => {
   score += 10;
@@ -32,14 +33,24 @@ const timer = () => {
 };
 
 const getNewHit = () => {
-  var newHit = Math.floor(Math.random() * 10);
+  newHit = Math.floor(Math.random() * 10);
   document.querySelector("#hitValue").textContent = newHit;
 };
 
 document
   .querySelector("#panelBottom")
   .addEventListener("click", function (detail) {
-    console.log(Number(detail.target.textContent));
+    var clickedNumber = Number(detail.target.textContent);
+
+    if (clickedNumber === newHit) {
+      increaseScore();
+      createBubble();
+      getNewHit();
+    } else {
+      document.querySelector(
+        "#panelBottom"
+      ).innerHTML = `<h1 style="text-align: center; color: white;">Game Over</h1>`;
+    }
   });
 
 createBubble();
