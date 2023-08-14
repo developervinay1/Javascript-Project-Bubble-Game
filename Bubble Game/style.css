@@ -74,4 +74,5 @@ body {
   justify-content: center;
   align-items: center;
   font-size: 16px;
+  cursor: pointer;
 }
