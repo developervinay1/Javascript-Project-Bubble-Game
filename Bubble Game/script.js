@@ -1,5 +1,7 @@
 // Event Bubbling Concept
 
+var time = 60;
+
 const createBubble = () => {
   var clutter = "";
 
@@ -11,4 +13,18 @@ const createBubble = () => {
   document.querySelector("#panelBottom").innerHTML = clutter;
 };
 
+const timer = () => {
+  setInterval(() => {
+    if (time > 0) {
+      time--;
+      document.querySelector("#timer").textContent = time;
+    } else {
+      document.querySelector(
+        "#panelBottom"
+      ).innerHTML = `<h1 style="text-align: center; color: white;">Time Out</h1>`;
+    }
+  }, 1000);
+};
+
 createBubble();
+timer();
